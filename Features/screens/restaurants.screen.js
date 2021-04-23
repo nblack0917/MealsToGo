@@ -1,8 +1,24 @@
 import React, { useState } from "react";
 import { StyleSheet, StatusBar, SafeAreaView, Text, View } from "react-native";
+import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
 
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
+
+const SafeViewContainer = styled(SafeAreaView)`
+  flex: 1;
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
+`;
+
+const SearchbarContainer = styled(View)`
+  padding: 16px;
+`;
+
+const ListViewContainer = styled(View)`
+  flex: 1;
+  padding: 16px;
+  background-color: powderblue;
+`;
 
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,18 +26,18 @@ export const RestaurantsScreen = () => {
   const onChangeSearch = (query) => setSearchQuery(query);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.searchbar}>
+    <SafeViewContainer>
+      <SearchbarContainer>
         <Searchbar
           placeholder="Search"
           onChangeText={onChangeSearch}
           value={searchQuery}
         />
-      </View>
-      <View style={styles.listView}>
+      </SearchbarContainer>
+      <ListViewContainer>
         <RestaurantInfoCard />
-      </View>
-    </SafeAreaView>
+      </ListViewContainer>
+    </SafeViewContainer>
   );
 };
 

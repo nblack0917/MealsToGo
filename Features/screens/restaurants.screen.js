@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, StatusBar, SafeAreaView, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 
-import { RestaurantInfo } from "../components/restaurant-info.component";
+import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,7 +19,7 @@ export const RestaurantsScreen = () => {
         />
       </View>
       <View style={styles.listView}>
-        <RestaurantInfo />
+        <RestaurantInfoCard />
       </View>
     </SafeAreaView>
   );

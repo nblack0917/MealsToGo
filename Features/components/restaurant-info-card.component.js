@@ -1,8 +1,14 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import { Card, Title, Paragraph } from "react-native-paper";
+import styled from "styled-components/native";
+import { Card,  Paragraph } from "react-native-paper";
 
-export const RestaurantInfo = ({ restaurant = {} }) => {
+const Title = styled.Text`
+  padding: 16px;
+  color: red;
+`;
+
+export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some Place to Eat",
     icon,

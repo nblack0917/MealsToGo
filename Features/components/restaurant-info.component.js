@@ -20,6 +20,7 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
       <Card.Content />
       <Card.Cover key={name} source={{ uri: photos[0] }} style={styles.cover} />
       <Title style={styles.title}>{name}</Title>
+      <Text style={styles.address}>{address}</Text>
     </Card>
   );
 };
@@ -34,6 +35,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   title: {
+    paddingBottom: 12,
+    paddingLeft: 16,
+  },
+  address: {
     paddingBottom: 16,
     paddingLeft: 16,
   },

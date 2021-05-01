@@ -3,7 +3,7 @@ import { StatusBar, SafeAreaView, FlatList } from "react-native";
 import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
 
-import { SafeViewContainer } from "../../utils/safe-area.component"
+import { SafeViewContainer } from "../../utils/safe-area.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { RestaurantCard } from "../components/restaurant-info-card.styles";
 import { Spacer } from "../../components/spacer/spacer.component";

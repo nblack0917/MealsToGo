@@ -16,12 +16,29 @@ import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { SafeViewContainer } from "./src/utils/safe-area.component";
 import { RestaurantsScreen } from "./src/features/screens/restaurants.screen";
 
+const Tab = createBottomTabNavigator();
+
+const TAB_ICON = {
+  Restaurants: "restaurant-outline",
+  Map: "map-outline",
+  Settings: "settings-outline",
+};
+
 const MapScreen = () => {
   return (
     <SafeViewContainer>
       <Text>Map!</Text>
     </SafeViewContainer>
   );
+};
+
+const createScreenOptions = ({ route }) => {
+  const iconName = TAB_ICON[route.name];
+  return {
+    tabBarIcon: ({ color, size }) => (
+      <Ionicons name={iconName} size={size} color={color} />
+    ),
+  };
 };
 
 const RestaurantsTabScreen = () => {
@@ -36,27 +53,10 @@ const SettingsScreen = () => {
   );
 };
 
-const Tab = createBottomTabNavigator();
-
 const MyTabs = () => {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
-          let iconName;
-
-          if (route.name === "Restaurants") {
-            iconName = "restaurant-outline";
-          } else if (route.name === "Map") {
-            iconName = "map-outline";
-          } else if (route.name === "Settings") {
-            iconName = "settings-outline";
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-      })}
+      screenOptions={createScreenOptions}
       tabBarOptions={{
         activeTintColor: "tomato",
         inactiveTintColor: "gray",

@@ -1,9 +1,34 @@
 import { mocks } from "./mock";
+import camelize from "camelize";
 
-const restaurantsRequest = (
-  location = "37.7750214302915, -122.4202089697085"
-) => {
-  console.log(mocks);
+export const restaurantsRequest = (location = "37.7749295,-122.4194155") => {
+  return new Promise((resolve, reject) => {
+    const mock = mocks[location];
+    if (!mock) {
+      reject("not found");
+    }
+    resolve(mock);
+  });
 };
 
-restaurantsRequest();
+export const resaurantsTransform = ({ results = [] }) => {
+  const mappedResults = results.map((restaurant) => {
+      return {
+          ...restaurant,
+          isOpenNow: restaurant.opening_hours && restaurant.opening_hours.open_now,
+      isClosedTemporarily: restaurant.business_status === "CLOSED_TEMPORARILY",
+      };
+  });
+//   console.log(mappedResults);
+  
+  return camelize(mappedResults);
+};
+
+restaurantsRequest()
+  .then(resaurantsTransform)
+  .then((transformedResponse) => {
+    console.log(transformedResponse);
+  })
+  .catch((err) => {
+    console.log(err);
+  });

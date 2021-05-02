@@ -15,7 +15,8 @@ import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 
 import { SafeViewContainer } from "./src/utils/safe-area.component";
 import { RestaurantsScreen } from "./src/features/screens/restaurants.screen";
-import { RestaurantsContext, RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context"
+import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 
 const Tab = createBottomTabNavigator();
 
@@ -85,12 +86,14 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsContextProvider>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
             <NavigationContainer>
               <MyTabs />
             </NavigationContainer>
             <ExpoStatusBar style="auto" />
-        </RestaurantsContextProvider> 
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
     </>
   );

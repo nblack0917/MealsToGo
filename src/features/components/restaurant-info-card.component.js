@@ -40,8 +40,8 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Text variant="label">{name}</Text>
         <Rating>
           <RatingRow>
-            {ratingArray.map((index) => (
-              <SvgXml xml={star} width={20} height={20} key={index} />
+            {ratingArray.map(() => (
+              <SvgXml xml={star} width={20} height={20} />
             ))}
           </RatingRow>
           <RatingEnd>

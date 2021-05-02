@@ -1,20 +1,14 @@
 import React, { useState, useContext } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import styled from "styled-components/native";
-import { Searchbar, ActivityIndicator, Colors } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 
 import { SafeViewContainer } from "../../utils/safe-area.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { Spacer } from "../../components/spacer/spacer.component";
+import { Search } from "../components/search.components";
 
-import {
-  resaurantContext,
-  RestaurantsContext,
-} from "../../services/restaurants/restaurants.context";
-
-const SearchbarContainer = styled.View`
-  padding: ${(props) => props.theme.space[3]};
-`;
+import { RestaurantsContext } from "../../services/restaurants/restaurants.context";
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: { padding: 16 },
@@ -27,7 +21,7 @@ const LoadingView = styled.View`
 `;
 
 const Loading = styled(ActivityIndicator)`
-  margin-left: -40;
+  margin-left: -40px;
 `;
 
 const LoadingIndicator = ({ isLoading }) => {
@@ -39,21 +33,11 @@ const LoadingIndicator = ({ isLoading }) => {
 };
 
 export const RestaurantsScreen = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const onChangeSearch = (query) => setSearchQuery(query);
-
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
 
   return (
     <SafeViewContainer>
-      <SearchbarContainer>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-        />
-      </SearchbarContainer>
+      <Search />
       {isLoading ? (
         <LoadingIndicator isLoading={isLoading} />
       ) : (
@@ -68,7 +52,6 @@ export const RestaurantsScreen = () => {
             );
           }}
           keyExtractor={(item) => item.name}
-          contentContainerStyle={{ padding: 16 }}
         />
       )}
     </SafeViewContainer>

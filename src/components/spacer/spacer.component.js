@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
-import { View } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 
 const TopSmall = styled.View`
@@ -21,25 +21,6 @@ const LeftMedium = styled.View`
 const LeftLarge = styled.View`
   margin-left: ${(props) => props.theme.space[3]};
 `;
-
-// export const Spacer = ({ variant }) => {
-//   if (variant === "top.medium") {
-//     return <TopMedium />;
-//   }
-//   if (variant === "top.large") {
-//     return <TopLarge />;
-//   }
-//   if (variant === "left.small") {
-//     return <LeftSmall />;
-//   }
-//   if (variant === "left.medium") {
-//     return <LeftMedium />;
-//   }
-//   if (variant === "left.large") {
-//     return <LeftLarge />;
-//   }
-//   return <TopSmall />;
-// };
 
 const sizeVariant = {
   small: 1,
@@ -70,10 +51,6 @@ export const Spacer = ({ position, size, children }) => {
   const variant = getVariant(position, size, theme);
   return <SpacerView variant={variant}>{children}</SpacerView>;
 };
-
-// export const Spacer = styled.View`
-//   ${({ position, size, theme }) => getVariant(position, size, theme)}
-// `;
 
 Spacer.defaultProps = {
   position: "top",

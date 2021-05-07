@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { FlatList } from "react-native";
+import React, { useContext } from "react";
+import { FlatList, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { ActivityIndicator } from "react-native-paper";
 
@@ -32,7 +32,8 @@ const LoadingIndicator = ({ isLoading }) => {
   );
 };
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({ navigation }) => {
+  // eslint-disable-next-line no-unused-vars
   const { restaurants, isLoading, error } = useContext(RestaurantsContext);
 
   return (
@@ -46,9 +47,15 @@ export const RestaurantsScreen = () => {
           renderItem={({ item }) => {
             // console.log(item)
             return (
-              <Spacer position="bottom" size="large">
-                <RestaurantInfoCard restaurant={item} />
-              </Spacer>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("RestaurantDetail", { restaurant: item })
+                }
+              >
+                <Spacer position="bottom" size="large">
+                  <RestaurantInfoCard restaurant={item} />
+                </Spacer>
+              </TouchableOpacity>
             );
           }}
           keyExtractor={(item) => item.name}
